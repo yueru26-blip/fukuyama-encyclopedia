@@ -1,0 +1,1924 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>福山思想百科 · Francis Fukuyama</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --green-deep: #1b3a2d;
+    --green-mid: #2d5a47;
+    --green-sage: #4a7c68;
+    --green-light: #e4ece7;
+    --green-pale: #f2f6f3;
+    --gold: #b8945f;
+    --gold-light: #f5f0e6;
+    --gold-dark: #8a6d3f;
+    --cream: #faf8f4;
+    --bg: #f6f4f0;
+    --white: #ffffff;
+    --card: #ffffff;
+    --ink: #1c1c1c;
+    --text: #3d3d3d;
+    --muted: #8a8a8a;
+    --light: #f0ede7;
+    --border: #ddd8d0;
+    --radius: 14px;
+    --shadow-sm: 0 1px 3px rgba(27,58,45,.06);
+    --shadow: 0 4px 12px rgba(27,58,45,.08);
+    --shadow-lg: 0 12px 32px rgba(27,58,45,.1);
+    --serif: "Noto Serif SC", "Songti SC", "Source Han Serif SC", Georgia, serif;
+    --sans: "Inter", -apple-system, "PingFang SC", "Noto Sans SC", sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 15px;
+  }
+
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
+  /* ===== DECORATIVE PATTERNS ===== */
+  .pattern-dots {
+    background-image: radial-gradient(circle, rgba(255,255,255,.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .pattern-grid {
+    background-image:
+      linear-gradient(rgba(27,58,45,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(27,58,45,.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .pattern-diagonal {
+    background-image: repeating-linear-gradient(
+      45deg, transparent, transparent 12px,
+      rgba(184,148,95,.06) 12px, rgba(184,148,95,.06) 13px
+    );
+  }
+  .ornament {
+    display: flex; align-items: center; gap: 16px;
+    margin: 48px 0; color: var(--border);
+  }
+  .ornament::before, .ornament::after {
+    content: ""; flex: 1; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+  }
+  .ornament-icon {
+    width: 8px; height: 8px; border: 1.5px solid var(--gold);
+    transform: rotate(45deg); flex-shrink: 0;
+  }
+
+  /* ===== NAV ===== */
+  nav.topbar {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(27,58,45,.97);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  .nav-inner {
+    max-width: 1120px; margin: 0 auto; padding: 0 28px;
+    display: flex; align-items: center; gap: 4px;
+    height: 54px; overflow-x: auto; white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-inner a {
+    font-size: 12.5px; color: rgba(255,255,255,.55); text-decoration: none;
+    padding: 6px 14px; border-radius: 6px; transition: all .25s;
+    flex-shrink: 0; letter-spacing: .02em; font-weight: 500;
+  }
+  .nav-inner a:hover { color: #fff; background: rgba(255,255,255,.1); }
+  .nav-brand {
+    font-family: var(--serif); font-weight: 700; font-size: 15px;
+    color: var(--gold); margin-right: 16px; letter-spacing: .04em;
+    padding-right: 16px; border-right: 1px solid rgba(255,255,255,.12);
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: var(--green-deep);
+    position: relative; overflow: hidden;
+    padding: 0; border-bottom: 3px solid var(--gold);
+  }
+  .hero-bg-pattern {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 80%, rgba(184,148,95,.08) 0%, transparent 50%),
+      radial-gradient(circle at 85% 20%, rgba(74,124,104,.12) 0%, transparent 40%),
+      radial-gradient(circle, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 20px 20px;
+  }
+  .hero-geo {
+    position: absolute; border: 1px solid rgba(184,148,95,.1);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-geo-1 { width: 400px; height: 400px; top: -120px; right: -80px; }
+  .hero-geo-2 { width: 260px; height: 260px; top: -60px; right: -20px; }
+  .hero-geo-3 { width: 180px; height: 180px; bottom: -60px; left: 10%; border-color: rgba(255,255,255,.04); }
+  .hero-inner {
+    position: relative; z-index: 2;
+    padding: 80px 0 72px;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 260px; gap: 56px;
+    align-items: center;
+  }
+  .hero-kicker {
+    font-size: 11px; letter-spacing: .35em; color: var(--gold);
+    font-weight: 600; text-transform: uppercase; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-kicker::before {
+    content: ""; width: 32px; height: 1px; background: var(--gold);
+  }
+  .hero h1 {
+    font-family: var(--serif); font-size: 52px; font-weight: 900;
+    color: #fff; letter-spacing: .02em; line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .hero .en-name {
+    font-size: 16px; color: rgba(255,255,255,.4); font-weight: 400;
+    margin-bottom: 24px; letter-spacing: .06em;
+  }
+  .hero .bio {
+    font-size: 15.5px; color: rgba(255,255,255,.7); line-height: 1.9;
+    max-width: 540px;
+  }
+  .hero .bio strong { color: #fff; font-weight: 600; }
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stat-card {
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+    border-radius: 12px; padding: 24px 16px; text-align: center;
+    backdrop-filter: blur(8px); transition: all .3s;
+  }
+  .stat-card:hover { background: rgba(255,255,255,.1); border-color: var(--gold); }
+  .stat-num {
+    font-family: var(--serif); font-size: 36px; font-weight: 900;
+    color: var(--gold); line-height: 1; letter-spacing: -.02em;
+  }
+  .stat-label {
+    font-size: 11px; color: rgba(255,255,255,.45); margin-top: 8px;
+    letter-spacing: .1em; font-weight: 500;
+  }
+  .hero-tags {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px;
+  }
+  .hero-tag {
+    font-size: 11px; padding: 5px 14px; border-radius: 4px;
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+    color: rgba(255,255,255,.55); font-weight: 500; letter-spacing: .02em;
+  }
+
+  /* Gold bar between hero and content */
+  .gold-bar {
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-dark));
+  }
+
+  /* ===== SECTIONS ===== */
+  section { padding: 72px 0; position: relative; }
+  section + section { border-top: 1px solid var(--border); }
+
+  .section-header { margin-bottom: 44px; }
+  .section-label {
+    font-size: 10px; letter-spacing: .3em; color: var(--gold);
+    font-weight: 700; text-transform: uppercase; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::before {
+    content: ""; width: 24px; height: 1.5px; background: var(--gold);
+  }
+  .section-title {
+    font-family: var(--serif); font-size: 30px; font-weight: 700;
+    color: var(--green-deep); letter-spacing: .01em; line-height: 1.35;
+  }
+  .section-desc {
+    font-size: 14.5px; color: var(--muted); margin-top: 10px;
+    max-width: 620px; line-height: 1.8;
+  }
+
+  /* ===== PHASE CARDS ===== */
+  .phase-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .phase-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 32px 28px;
+    box-shadow: var(--shadow-sm); position: relative;
+    overflow: hidden; transition: all .3s;
+  }
+  .phase-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+  .phase-card::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0;
+    height: 4px;
+  }
+  .phase-card.p1::before { background: linear-gradient(90deg, #8b3a3a, #c25050); }
+  .phase-card.p2::before { background: linear-gradient(90deg, var(--green-deep), var(--green-sage)); }
+  .phase-card.p3::before { background: linear-gradient(90deg, var(--gold-dark), var(--gold)); }
+  .phase-card::after {
+    content: ""; position: absolute; bottom: 0; right: 0;
+    width: 80px; height: 80px; opacity: .04;
+    background-image: radial-gradient(circle, var(--green-deep) 1px, transparent 1px);
+    background-size: 8px 8px;
+  }
+  .phase-num {
+    font-size: 10px; font-weight: 700; letter-spacing: .2em;
+    color: var(--muted); margin-bottom: 10px;
+  }
+  .phase-title {
+    font-family: var(--serif); font-size: 22px; font-weight: 700;
+    color: var(--green-deep); margin-bottom: 4px;
+  }
+  .phase-period { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+  .phase-body { font-size: 14px; color: var(--text); line-height: 1.8; }
+  .phase-body strong { color: var(--green-deep); font-weight: 600; }
+  .phase-books {
+    margin-top: 18px; padding-top: 16px;
+    border-top: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .phase-book {
+    font-size: 11px; padding: 4px 12px; border-radius: 4px;
+    background: var(--green-pale); color: var(--green-sage);
+    font-weight: 500;
+  }
+
+  /* ===== CORE QUESTION ===== */
+  .core-question {
+    background: var(--green-deep); color: #fff;
+    border-radius: var(--radius); padding: 48px 52px;
+    margin: 36px 0; position: relative; overflow: hidden;
+  }
+  .core-question::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+  .core-question::after {
+    content: "?"; position: absolute; right: 48px; bottom: -10px;
+    font-family: var(--serif); font-size: 180px; font-weight: 900;
+    opacity: .04; line-height: 1; color: var(--gold);
+  }
+  .cq-label {
+    font-size: 10px; letter-spacing: .3em; color: var(--gold);
+    margin-bottom: 16px; font-weight: 700; position: relative; z-index: 1;
+  }
+  .cq-text {
+    font-family: var(--serif); font-size: 24px; font-weight: 700;
+    line-height: 1.65; max-width: 660px; position: relative; z-index: 1;
+  }
+  .cq-sub {
+    font-size: 14px; opacity: .5; margin-top: 18px; max-width: 580px;
+    line-height: 1.8; position: relative; z-index: 1;
+  }
+
+  /* ===== CHART BOXES ===== */
+  .chart-box {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 32px;
+    box-shadow: var(--shadow-sm); margin-bottom: 20px;
+    position: relative; overflow: hidden;
+  }
+  .chart-box::after {
+    content: ""; position: absolute; top: 0; right: 0;
+    width: 120px; height: 120px; opacity: .03;
+    background: repeating-linear-gradient(
+      -45deg, var(--green-deep), var(--green-deep) 1px,
+      transparent 1px, transparent 8px
+    );
+  }
+  .chart-title {
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+    color: var(--green-deep); margin-bottom: 24px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .chart-title::before {
+    content: ""; width: 4px; height: 18px; background: var(--gold);
+    border-radius: 2px;
+  }
+
+  /* Flow Diagram */
+  .flow-diagram {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0; flex-wrap: wrap; padding: 8px 0;
+  }
+  .flow-node {
+    padding: 14px 22px; border-radius: 10px; font-size: 13px;
+    font-weight: 600; text-align: center; white-space: nowrap;
+  }
+  .flow-arrow {
+    font-size: 16px; color: var(--border); padding: 0 6px;
+    flex-shrink: 0;
+  }
+  .fn-dark { background: var(--green-deep); color: #fff; }
+  .fn-red { background: #fef2f2; color: #8b3a3a; border: 1px solid #f5d5d5; }
+  .fn-green { background: var(--green-pale); color: var(--green-deep); border: 1px solid #c5d9ce; }
+  .fn-gold { background: var(--gold-light); color: var(--gold-dark); border: 1px solid #e5d5b8; }
+  .fn-sage { background: var(--green-light); color: var(--green-mid); border: 1px solid #b8d4c5; }
+
+  /* Three Pillars */
+  .pillar-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+  }
+  .pillar-box {
+    padding: 22px; border-radius: 10px; line-height: 1.75;
+  }
+  .pillar-box .p-title { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+  .pillar-box .p-text { font-size: 13px; color: var(--text); }
+  .pillar-box .p-text strong { color: var(--green-deep); }
+  .pb-red { background: #faf5f5; border: 1px solid #eeddd; }
+  .pb-red .p-title { color: #8b3a3a; }
+  .pb-blue { background: var(--green-pale); border: 1px solid #c5d9ce; }
+  .pb-blue .p-title { color: var(--green-deep); }
+  .pb-gold { background: var(--gold-light); border: 1px solid #e5d5b8; }
+  .pb-gold .p-title { color: var(--gold-dark); }
+  .insight-bar {
+    margin-top: 18px; padding: 18px 22px; border-radius: 10px;
+    background: var(--light); font-size: 13.5px; color: var(--muted);
+    line-height: 1.8; border-left: 4px solid var(--gold);
+  }
+  .insight-bar strong { color: var(--ink); }
+
+  /* ===== TIMELINE ===== */
+  .timeline-container { position: relative; padding-left: 36px; }
+  .timeline-container::before {
+    content: ""; position: absolute; left: 8px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--green-deep), var(--gold), var(--green-sage));
+    opacity: .25;
+  }
+  .tl-entry { position: relative; padding-bottom: 32px; }
+  .tl-entry:last-child { padding-bottom: 0; }
+  .tl-dot {
+    position: absolute; left: -36px; top: 6px;
+    width: 18px; height: 18px; border-radius: 50%;
+    border: 3px solid var(--green-sage); background: var(--bg);
+    transition: all .25s;
+  }
+  .tl-entry:hover .tl-dot {
+    transform: scale(1.3); border-color: var(--gold);
+    box-shadow: 0 0 0 4px rgba(184,148,95,.15);
+  }
+  .tl-entry.phase-a .tl-dot { border-color: #8b3a3a; }
+  .tl-entry.phase-b .tl-dot { border-color: var(--green-deep); }
+  .tl-entry.phase-c .tl-dot { border-color: var(--gold); }
+  .tl-year {
+    font-size: 11px; font-weight: 700; color: var(--green-sage);
+    letter-spacing: .08em; margin-bottom: 3px;
+  }
+  .tl-entry.phase-a .tl-year { color: #8b3a3a; }
+  .tl-entry.phase-c .tl-year { color: var(--gold-dark); }
+  .tl-name {
+    font-family: var(--serif); font-size: 18px; font-weight: 700;
+    color: var(--green-deep); margin-bottom: 2px;
+  }
+  .tl-en { font-size: 12px; color: var(--muted); font-style: italic; margin-bottom: 10px; }
+  .tl-desc {
+    font-size: 14px; color: var(--text); line-height: 1.8;
+    max-width: 660px;
+  }
+  .tl-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .tl-tag { font-size: 10px; padding: 3px 12px; border-radius: 4px; font-weight: 600; letter-spacing: .02em; }
+  .tag-green { background: var(--green-pale); color: var(--green-sage); }
+  .tag-gold { background: var(--gold-light); color: var(--gold-dark); }
+  .tag-red { background: #faf5f5; color: #8b3a3a; }
+  .tag-sage { background: var(--green-light); color: var(--green-mid); }
+
+  /* ===== CONCEPT MAP ===== */
+  .concept-layout {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .concept-item {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 26px 24px;
+    box-shadow: var(--shadow-sm); transition: all .3s;
+    cursor: pointer; position: relative; overflow: hidden;
+  }
+  .concept-item:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+  .concept-item::before {
+    content: ""; position: absolute; top: 0; left: 0;
+    width: 4px; height: 100%;
+  }
+  .concept-item::after {
+    content: ""; position: absolute; bottom: 0; right: 0;
+    width: 50px; height: 50px; opacity: .03;
+    background-image: radial-gradient(circle, var(--green-deep) 1px, transparent 1px);
+    background-size: 6px 6px;
+  }
+  .ci-green::before { background: var(--green-deep); }
+  .ci-gold::before { background: var(--gold); }
+  .ci-red::before { background: #8b3a3a; }
+  .ci-sage::before { background: var(--green-sage); }
+  .ci-dark::before { background: var(--green-deep); }
+  .ci-en {
+    font-size: 10px; font-weight: 700; letter-spacing: .12em;
+    color: var(--muted); text-transform: uppercase; margin-bottom: 5px;
+  }
+  .ci-zh {
+    font-family: var(--serif); font-size: 19px; font-weight: 700;
+    color: var(--green-deep); margin-bottom: 12px;
+  }
+  .ci-def { font-size: 13.5px; color: var(--text); line-height: 1.75; }
+
+  /* ===== COMPARISON TABLE ===== */
+  .cmp-table-wrap {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .cmp-table {
+    width: 100%; border-collapse: collapse; font-size: 13.5px;
+  }
+  .cmp-table thead tr { background: var(--green-deep); }
+  .cmp-table th {
+    padding: 16px 20px; font-weight: 600; color: #fff;
+    text-align: left; font-size: 12px; letter-spacing: .06em;
+  }
+  .cmp-table th:not(:first-child) { text-align: center; }
+  .cmp-table td {
+    padding: 16px 20px; border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  .cmp-table td:not(:first-child) { text-align: center; }
+  .cmp-table td:first-child { font-weight: 600; color: var(--green-deep); }
+  .cmp-table tbody tr:nth-child(even) { background: var(--green-pale); }
+  .cmp-table tbody tr:last-child td { border-bottom: none; }
+  .cmp-table tbody tr:hover { background: var(--gold-light); }
+  .score-yes { color: var(--green-sage); font-weight: 700; }
+  .score-no { color: #8b3a3a; font-weight: 700; }
+  .score-partial { color: var(--gold-dark); font-weight: 700; }
+
+  /* ===== SCHOLARS ===== */
+  .scholar-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+  }
+  .scholar-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 28px;
+    box-shadow: var(--shadow-sm); transition: all .3s;
+    position: relative; overflow: hidden;
+  }
+  .scholar-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+  .scholar-card::after {
+    content: ""; position: absolute; top: 0; right: 0;
+    width: 60px; height: 60px;
+    background: repeating-linear-gradient(
+      -45deg, transparent, transparent 4px,
+      rgba(27,58,45,.03) 4px, rgba(27,58,45,.03) 5px
+    );
+  }
+  .sc-header { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 16px; }
+  .sc-avatar {
+    min-width: 50px; height: 50px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 800; color: #fff; flex-shrink: 0;
+    font-family: var(--serif);
+  }
+  .sc-name { font-family: var(--serif); font-size: 17px; font-weight: 700; color: var(--green-deep); }
+  .sc-meta { font-size: 12px; color: var(--muted); }
+  .sc-work { font-size: 12px; color: var(--gold-dark); font-weight: 500; margin-top: 3px; }
+  .sc-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .sc-tag { font-size: 10px; padding: 3px 12px; border-radius: 4px; font-weight: 600; }
+  .stag-agree { background: var(--green-pale); color: var(--green-sage); }
+  .stag-tension { background: #faf5f5; color: #8b3a3a; }
+  .stag-source { background: var(--gold-light); color: var(--gold-dark); }
+  .sc-body { font-size: 13.5px; color: var(--text); line-height: 1.8; }
+  .sc-body strong { color: var(--green-deep); }
+  .sc-quote {
+    margin-top: 14px; padding: 14px 18px; border-radius: 8px;
+    background: var(--light); font-size: 13px; color: var(--muted);
+    font-style: italic; border-left: 3px solid var(--gold);
+    font-family: var(--serif);
+  }
+
+  /* ===== RELEVANCE ===== */
+  .relevance-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 16px;
+  }
+  .relevance-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 28px;
+    box-shadow: var(--shadow-sm); transition: all .3s;
+    position: relative; overflow: hidden;
+  }
+  .relevance-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+  .relevance-card::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--green-deep), var(--gold));
+  }
+  .rc-icon { font-size: 28px; margin-bottom: 14px; display: block; }
+  .rc-title {
+    font-family: var(--serif); font-size: 17px; font-weight: 700;
+    color: var(--green-deep); margin-bottom: 10px;
+  }
+  .rc-body { font-size: 13.5px; color: var(--text); line-height: 1.8; }
+  .rc-link {
+    display: inline-block; margin-top: 16px; font-size: 11px;
+    color: var(--gold-dark); font-weight: 600; letter-spacing: .04em;
+    padding: 4px 12px; background: var(--gold-light); border-radius: 4px;
+  }
+
+  /* ===== BOOKS ===== */
+  .book-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 16px;
+  }
+  .book-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 28px;
+    box-shadow: var(--shadow-sm); transition: all .3s;
+    display: flex; gap: 18px; align-items: flex-start;
+    position: relative; overflow: hidden;
+  }
+  .book-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+  .book-card::after {
+    content: ""; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 40px; opacity: .02;
+    background-image: repeating-linear-gradient(
+      90deg, var(--green-deep), var(--green-deep) 1px,
+      transparent 1px, transparent 6px
+    );
+    pointer-events: none;
+  }
+  .book-num {
+    min-width: 44px; height: 44px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: 16px; font-weight: 900;
+    flex-shrink: 0;
+  }
+  .bn-green { background: var(--green-deep); color: var(--gold); }
+  .bn-gold { background: var(--gold-light); color: var(--gold-dark); border: 1px solid #e5d5b8; }
+  .bn-sage { background: var(--green-pale); color: var(--green-sage); border: 1px solid #c5d9ce; }
+  .bn-light { background: var(--light); color: var(--muted); }
+  .book-info { flex: 1; }
+  .book-title {
+    font-family: var(--serif); font-size: 16px; font-weight: 700;
+    color: var(--green-deep); margin-bottom: 2px;
+  }
+  .book-en { font-size: 12px; color: var(--muted); font-style: italic; margin-bottom: 4px; }
+  .book-year { font-size: 11px; color: var(--gold-dark); font-weight: 600; margin-bottom: 10px; }
+  .book-desc { font-size: 13.5px; color: var(--text); line-height: 1.75; }
+
+  /* ===== PATHS ===== */
+  .path-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+  }
+  .path-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 32px;
+    box-shadow: var(--shadow-sm); transition: all .3s;
+    position: relative; overflow: hidden;
+  }
+  .path-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+  .path-card::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0;
+    height: 4px;
+  }
+  .path-card.pp1::before { background: linear-gradient(90deg, #8b3a3a, #c25050); }
+  .path-card.pp2::before { background: linear-gradient(90deg, var(--green-deep), var(--green-sage)); }
+  .path-card.pp3::before { background: linear-gradient(90deg, var(--gold-dark), var(--gold)); }
+  .path-card.pp4::before { background: linear-gradient(90deg, var(--green-sage), var(--gold)); }
+  .path-card::after {
+    content: ""; position: absolute; bottom: 0; right: 0;
+    width: 100px; height: 100px; opacity: .03;
+    background: radial-gradient(circle, var(--green-deep) 1.5px, transparent 1.5px);
+    background-size: 10px 10px;
+  }
+  .path-label {
+    font-size: 10px; font-weight: 700; letter-spacing: .2em;
+    color: var(--muted); margin-bottom: 10px;
+  }
+  .path-title {
+    font-family: var(--serif); font-size: 19px; font-weight: 700;
+    color: var(--green-deep); margin-bottom: 12px;
+  }
+  .path-body {
+    font-size: 13.5px; color: var(--text); line-height: 1.8; margin-bottom: 16px;
+  }
+  .path-steps { display: flex; flex-direction: column; gap: 10px; }
+  .path-step {
+    display: flex; gap: 12px; align-items: flex-start; font-size: 13px; color: var(--text);
+  }
+  .ps-num {
+    min-width: 24px; height: 24px; border-radius: 6px;
+    background: var(--green-deep); color: var(--gold);
+    font-size: 11px; font-weight: 700; font-family: var(--serif);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 56px 0; background: var(--green-deep);
+    text-align: center; position: relative; overflow: hidden;
+  }
+  footer::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  footer p {
+    font-size: 13px; color: rgba(255,255,255,.35);
+    position: relative; z-index: 1;
+  }
+  footer .foot-brand {
+    font-family: var(--serif); color: var(--gold); font-weight: 700;
+    font-size: 15px; margin-bottom: 8px; display: block;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+    .hero h1 { font-size: 38px; }
+    .phase-row { grid-template-columns: 1fr; }
+    .path-grid { grid-template-columns: 1fr; }
+    .scholar-grid { grid-template-columns: 1fr; }
+    .pillar-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .hero-inner { padding: 48px 0 40px; }
+    .hero h1 { font-size: 30px; }
+    section { padding: 48px 0; }
+    .concept-layout { grid-template-columns: 1fr; }
+    .relevance-grid { grid-template-columns: 1fr; }
+    .book-grid { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .flow-diagram { flex-direction: column; gap: 4px; }
+    .flow-arrow { transform: rotate(90deg); }
+  }
+
+  /* ===== ANIMATIONS ===== */
+  .fade-in {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ===== SPECTRUM / COORDINATE SYSTEM ===== */
+  .spectrum-intro {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 32px 36px;
+    margin-bottom: 28px; box-shadow: var(--shadow-sm);
+    position: relative; overflow: hidden;
+  }
+  .spectrum-intro::before {
+    content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: radial-gradient(circle, rgba(27,58,45,.02) 1px, transparent 1px);
+    background-size: 16px 16px; pointer-events: none;
+  }
+  .spectrum-intro h3 {
+    font-family: var(--serif); font-size: 17px; font-weight: 700;
+    color: var(--green-deep); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .spectrum-intro h3::before {
+    content: ""; width: 4px; height: 18px; background: var(--gold);
+    border-radius: 2px; flex-shrink: 0;
+  }
+  .spectrum-intro p {
+    font-size: 14px; color: var(--text); line-height: 1.85;
+    max-width: 780px; position: relative; z-index: 1;
+  }
+  .spectrum-intro p strong { color: var(--green-deep); }
+
+  .spectrum-list {
+    display: flex; flex-direction: column; gap: 20px;
+  }
+  .spectrum-item {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 28px 32px 24px;
+    box-shadow: var(--shadow-sm); transition: all .3s;
+    position: relative; overflow: hidden;
+  }
+  .spectrum-item:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+  .spectrum-item::after {
+    content: ""; position: absolute; bottom: 0; right: 0;
+    width: 80px; height: 80px; opacity: .025;
+    background: repeating-linear-gradient(
+      -45deg, var(--green-deep), var(--green-deep) 1px,
+      transparent 1px, transparent 6px
+    ); pointer-events: none;
+  }
+
+  .sp-header {
+    display: flex; align-items: baseline; gap: 12px;
+    margin-bottom: 6px;
+  }
+  .sp-num {
+    font-family: var(--serif); font-size: 11px; font-weight: 700;
+    color: var(--gold); letter-spacing: .15em; flex-shrink: 0;
+  }
+  .sp-title {
+    font-family: var(--serif); font-size: 18px; font-weight: 700;
+    color: var(--green-deep);
+  }
+
+  .sp-bar-wrap {
+    position: relative; margin: 18px 0 8px; padding: 0;
+  }
+  .sp-bar {
+    height: 10px; border-radius: 5px; position: relative;
+    background: linear-gradient(90deg, var(--green-light), #e8e4dc, var(--gold-light));
+    border: 1px solid var(--border);
+  }
+  .sp-marker {
+    position: absolute; top: -8px;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--green-deep); border: 3px solid var(--gold);
+    transform: translateX(-50%);
+    box-shadow: 0 2px 8px rgba(27,58,45,.25);
+    z-index: 2; transition: all .3s;
+  }
+  .sp-marker::after {
+    content: "F"; position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: 10px; font-weight: 800;
+    color: var(--gold);
+  }
+  .spectrum-item:hover .sp-marker {
+    transform: translateX(-50%) scale(1.15);
+    box-shadow: 0 2px 12px rgba(184,148,95,.4);
+  }
+  .sp-labels {
+    display: flex; justify-content: space-between;
+    margin-top: 6px;
+  }
+  .sp-label {
+    font-size: 12px; color: var(--muted); font-weight: 500;
+    max-width: 45%;
+  }
+  .sp-label-left { text-align: left; }
+  .sp-label-right { text-align: right; }
+  .sp-label .sp-scholars {
+    display: block; font-size: 10.5px; color: #aaa;
+    margin-top: 2px; font-weight: 400;
+  }
+
+  .sp-desc {
+    font-size: 13.5px; color: var(--text); line-height: 1.8;
+    margin-top: 14px; padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+  .sp-desc strong { color: var(--green-deep); }
+  .sp-position-tag {
+    display: inline-block; font-size: 11px; font-weight: 600;
+    padding: 3px 12px; border-radius: 4px; margin-top: 10px;
+    background: var(--gold-light); color: var(--gold-dark);
+    letter-spacing: .03em;
+  }
+
+  /* Quadrant Map */
+  .quadrant-map {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 36px;
+    box-shadow: var(--shadow-sm); margin-top: 28px;
+    position: relative; overflow: hidden;
+  }
+  .quadrant-map::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(27,58,45,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(27,58,45,.03) 1px, transparent 1px);
+    background-size: 32px 32px; pointer-events: none;
+  }
+  .quad-title {
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+    color: var(--green-deep); margin-bottom: 24px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .quad-title::before {
+    content: ""; width: 4px; height: 18px; background: var(--gold);
+    border-radius: 2px;
+  }
+  .quad-svg-wrap {
+    max-width: 700px; margin: 0 auto;
+    position: relative; z-index: 1;
+  }
+  .quad-svg-wrap svg { display: block; width: 100%; height: auto; }
+
+  /* Timeline of thought shift */
+  .shift-timeline {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 32px 36px;
+    box-shadow: var(--shadow-sm); margin-top: 28px;
+    position: relative; overflow: hidden;
+  }
+  .shift-title {
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+    color: var(--green-deep); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .shift-title::before {
+    content: ""; width: 4px; height: 18px; background: var(--gold);
+    border-radius: 2px;
+  }
+  .shift-row {
+    display: flex; gap: 0; align-items: stretch;
+    position: relative; margin-bottom: 4px;
+  }
+  .shift-row::before {
+    content: ""; position: absolute; left: 0; right: 0;
+    top: 50%; height: 2px; background: var(--border);
+    z-index: 0;
+  }
+  .shift-block {
+    flex: 1; padding: 14px 16px; position: relative; z-index: 1;
+    text-align: center; transition: all .2s;
+  }
+  .shift-block:hover { transform: translateY(-2px); }
+  .shift-block .sb-year {
+    font-size: 10px; font-weight: 700; letter-spacing: .1em;
+    margin-bottom: 4px;
+  }
+  .shift-block .sb-dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    margin: 6px auto; border: 2px solid; transition: all .2s;
+  }
+  .shift-block .sb-text {
+    font-size: 11.5px; color: var(--text); line-height: 1.5;
+    margin-top: 6px;
+  }
+  .sb-red .sb-year { color: #8b3a3a; }
+  .sb-red .sb-dot { border-color: #8b3a3a; background: #faf5f5; }
+  .sb-green .sb-year { color: var(--green-deep); }
+  .sb-green .sb-dot { border-color: var(--green-deep); background: var(--green-pale); }
+  .sb-gold .sb-year { color: var(--gold-dark); }
+  .sb-gold .sb-dot { border-color: var(--gold); background: var(--gold-light); }
+
+  @media (max-width: 600px) {
+    .spectrum-item { padding: 20px 18px 18px; }
+    .sp-label { font-size: 11px; }
+    .quadrant-map { padding: 20px 16px; }
+    .shift-row { flex-wrap: wrap; }
+    .shift-block { flex: 1 1 33%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topbar">
+  <div class="nav-inner">
+    <span class="nav-brand">福山百科</span>
+    <a href="#thought">思想演化</a>
+    <a href="#question">核心之问</a>
+    <a href="#timeline">著作年表</a>
+    <a href="#concepts">概念图谱</a>
+    <a href="#compare">文明比较</a>
+    <a href="#coordinates">思想坐标</a>
+    <a href="#scholars">思想对话</a>
+    <a href="#relevance">当代回响</a>
+    <a href="#books">著作导览</a>
+    <a href="#paths">阅读路径</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-geo hero-geo-1"></div>
+  <div class="hero-geo hero-geo-2"></div>
+  <div class="hero-geo hero-geo-3"></div>
+  <div class="container hero-inner">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-kicker">Thought Encyclopedia</div>
+        <h1>弗朗西斯·福山</h1>
+        <div class="en-name">Francis Fukuyama · 1952 —</div>
+        <div class="bio">
+          <strong>日裔美国政治学家</strong>，斯坦福大学高级研究员。师从亨廷顿，以 1989 年"历史的终结"论断震动世界。三十年来，他的写作围绕一个总问题展开：<strong>自由民主制能否成立、能否持存、能否抵御内外侵蚀？</strong> 从宣告胜利到寻找根基，再到诊断危机，他构建了一套理解当代政治最完整的思想体系。
+        </div>
+        <div class="hero-tags">
+          <span class="hero-tag">政治哲学</span>
+          <span class="hero-tag">比较政治学</span>
+          <span class="hero-tag">历史社会学</span>
+          <span class="hero-tag">自由主义</span>
+          <span class="hero-tag">身份政治</span>
+          <span class="hero-tag">国家构建</span>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">主要著作</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">35</div>
+          <div class="stat-label">年思想跨度</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3</div>
+          <div class="stat-label">思想阶段</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">10</div>
+          <div class="stat-label">核心概念</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="gold-bar"></div>
+
+<div class="container pattern-grid">
+
+<!-- ===== 思想演化 ===== -->
+<section id="thought" class="fade-in">
+  <div class="section-header">
+    <div class="section-label">Intellectual Evolution</div>
+    <div class="section-title">三个阶段的思想旅程</div>
+    <div class="section-desc">从宣告自由民主的胜利，到追溯政治秩序的根基，再到诊断自由秩序的危机——福山的思想并非一成不变，而是在不断回应时代的挑战。</div>
+  </div>
+
+  <div class="phase-row">
+    <div class="phase-card p1">
+      <div class="phase-num">PHASE 01</div>
+      <div class="phase-title">宣告胜利</div>
+      <div class="phase-period">1989 — 1999</div>
+      <div class="phase-body">
+        柏林墙倒塌的时代背景下，断言自由民主制是人类意识形态演化的<strong>"终点"</strong>。随即转向研究维系这一制度的文化条件——社会信任、社交资本与人类本性中的合作倾向。
+      </div>
+      <div class="phase-books">
+        <span class="phase-book">历史的终结 1992</span>
+        <span class="phase-book">信任 1995</span>
+        <span class="phase-book">大断裂 1999</span>
+      </div>
+    </div>
+
+    <div class="phase-card p2">
+      <div class="phase-num">PHASE 02</div>
+      <div class="phase-title">寻找根基</div>
+      <div class="phase-period">2000 — 2014</div>
+      <div class="phase-body">
+        面对 9·11、伊拉克战争、新兴市场国家崛起，转入<strong>历史比较政治学</strong>，追问国家、法治、问责制三大支柱如何在不同文明中形成——以及为何许多社会无法建立稳定的现代秩序。
+      </div>
+      <div class="phase-books">
+        <span class="phase-book">后人类未来 2002</span>
+        <span class="phase-book">国家构建 2004</span>
+        <span class="phase-book">政治秩序的起源 2011</span>
+      </div>
+    </div>
+
+    <div class="phase-card p3">
+      <div class="phase-num">PHASE 03</div>
+      <div class="phase-title">回望危机</div>
+      <div class="phase-period">2014 — 至今</div>
+      <div class="phase-body">
+        面对民粹兴起、特朗普现象、自由秩序退潮，诊断<strong>政治衰败</strong>的机制，重新挖掘"承认/尊严"的政治哲学根源，并为古典自由主义做出系统辩护。
+      </div>
+      <div class="phase-books">
+        <span class="phase-book">政治秩序与政治衰败 2014</span>
+        <span class="phase-book">身份 2018</span>
+        <span class="phase-book">自由主义及其不满 2022</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ornament"><div class="ornament-icon"></div></div>
+
+<!-- ===== 核心之问 ===== -->
+<section id="question" class="fade-in">
+  <div class="core-question">
+    <div class="cq-label">THE CENTRAL QUESTION</div>
+    <div class="cq-text">自由民主制能否成立、能否持存、能否抵御内外侵蚀？</div>
+    <div class="cq-sub">福山一生的写作，可以理解为对这个总问题的反复回答。他的每一本书，都是对这个问题的一个维度的探索——从论证它的必然性，到追溯它的历史条件，再到诊断它的当代危机。</div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">福山思想的内在结构</div>
+    <div class="flow-diagram">
+      <div class="flow-node fn-red">承认的斗争<br><small style="font-weight:400;opacity:.6">thymos / 黑格尔</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node fn-dark">历史的终结<br><small style="font-weight:400;opacity:.5">自由民主 = 终点？</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node fn-green">秩序的根基<br><small style="font-weight:400;opacity:.6">国家·法治·问责</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node fn-gold">衰败的诊断<br><small style="font-weight:400;opacity:.6">否决政治·家族化</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node fn-sage">身份的回归<br><small style="font-weight:400;opacity:.6">尊严·民粹·危机</small></div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">政治秩序三要素 — 福山最核心的分析框架</div>
+    <div class="pillar-row">
+      <div class="pillar-box pb-red">
+        <div class="p-title">State · 国家</div>
+        <div class="p-text">有效维持秩序、征税、提供公共物品的集权组织。<strong>中国秦朝</strong>是人类最早的现代国家。</div>
+      </div>
+      <div class="pillar-box pb-blue">
+        <div class="p-title">Rule of Law · 法治</div>
+        <div class="p-text">所有人都受高于个人权力的规则约束。<strong>欧洲教皇革命</strong>意外催生了法治传统。</div>
+      </div>
+      <div class="pillar-box pb-gold">
+        <div class="p-title">Accountability · 问责</div>
+        <div class="p-text">权力须对民众负责的机制。三要素中<strong>最晚出现、最难制度化</strong>的一项。</div>
+      </div>
+    </div>
+    <div class="insight-bar">
+      <strong>核心洞见：</strong>三者缺一不可，且顺序、组合不同，造就了不同政治路径。只有国家而无法治与问责 → 专制（中国传统王朝）；只有法治而无强国家 → 软弱（印度前现代）；三者均衡 → 现代自由民主（英国、丹麦）。
+    </div>
+  </div>
+</section>
+
+<div class="ornament"><div class="ornament-icon"></div></div>
+
+<!-- ===== 著作年表 ===== -->
+<section id="timeline" class="fade-in">
+  <div class="section-header">
+    <div class="section-label">Chronology</div>
+    <div class="section-title">十部主要著作</div>
+    <div class="section-desc">从 1992 年到 2022 年，三十年间的思想轨迹。</div>
+  </div>
+
+  <div class="timeline-container">
+
+    <div class="tl-entry phase-a">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1992 · 阶段一</div>
+      <div class="tl-name">历史的终结与最后的人</div>
+      <div class="tl-en">The End of History and the Last Man</div>
+      <div class="tl-desc">自由民主制是人类意识形态演化的终点。两大引擎：现代自然科学驱动的经济逻辑，与黑格尔-科耶夫的"承认的斗争"。但"最后的人"——满足而平庸——是自由民主自身的隐忧。</div>
+      <div class="tl-tags">
+        <span class="tl-tag tag-red">黑格尔-科耶夫</span>
+        <span class="tl-tag tag-sage">尼采</span>
+        <span class="tl-tag tag-green">承认</span>
+      </div>
+    </div>
+
+    <div class="tl-entry phase-a">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1995 · 阶段一</div>
+      <div class="tl-name">信任：社会美德与繁荣的创造</div>
+      <div class="tl-en">Trust: The Social Virtues and the Creation of Prosperity</div>
+      <div class="tl-desc">经济不仅靠制度与价格，更靠"自发社交性"——陌生人之间能否合作。高信任社会（美、日、德）vs. 低信任社会（中、法、意南）。首次把"文化"作为独立变量引入比较政治经济学。</div>
+      <div class="tl-tags">
+        <span class="tl-tag tag-green">社会资本</span>
+        <span class="tl-tag tag-gold">文化经济学</span>
+      </div>
+    </div>
+
+    <div class="tl-entry phase-a">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1999 · 阶段一</div>
+      <div class="tl-name">大断裂：人类本性与社会秩序的重建</div>
+      <div class="tl-en">The Great Disruption</div>
+      <div class="tl-desc">诊断 1960s–90s 西方社会的道德/秩序断裂：犯罪率上升、家庭瓦解、信任下降。但乐观地认为秩序最终会基于人性中的合作本能自我重建。</div>
+      <div class="tl-tags">
+        <span class="tl-tag tag-green">社会秩序</span>
+        <span class="tl-tag tag-sage">人性</span>
+      </div>
+    </div>
+
+    <div class="tl-entry phase-b">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2002 · 过渡</div>
+      <div class="tl-name">我们的后人类未来</div>
+      <div class="tl-en">Our Posthuman Future</div>
+      <div class="tl-desc">生物技术才是对自由民主制的真正威胁——因为它直接改写"人性"，而自由民主的合法性恰恰建立在"普遍人性"之上。一本被低估的转向之作。</div>
+      <div class="tl-tags">
+        <span class="tl-tag tag-sage">生物伦理</span>
+        <span class="tl-tag tag-red">技术政治</span>
+      </div>
+    </div>
+
+    <div class="tl-entry phase-b">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2004 · 阶段二</div>
+      <div class="tl-name">国家构建：21 世纪的治理与世界秩序</div>
+      <div class="tl-en">State-Building</div>
+      <div class="tl-desc">区分国家的"范围"与"能力"：弱国家而非威权国家才是国际秩序最大威胁。对新保守主义"民主输出"的早期警告。</div>
+      <div class="tl-tags">
+        <span class="tl-tag tag-green">国家能力</span>
+        <span class="tl-tag tag-gold">失败国家</span>
+      </div>
+    </div>
+
+    <div class="tl-entry phase-b">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2011 · 阶段二 · 巅峰</div>
+      <div class="tl-name">政治秩序的起源</div>
+      <div class="tl-en">The Origins of Political Order</div>
+      <div class="tl-desc">横跨中国、印度、伊斯兰世界、欧洲的比较政治史。提出政治秩序三要素：国家、法治、问责制。第一个"现代国家"诞生于中国秦汉——但中国长期缺少法治与问责。</div>
+      <div class="tl-tags">
+        <span class="tl-tag tag-red">比较政治</span>
+        <span class="tl-tag tag-green">三支柱</span>
+        <span class="tl-tag tag-sage">文明比较</span>
+      </div>
+    </div>
+
+    <div class="tl-entry phase-c">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2014 · 阶段三</div>
+      <div class="tl-name">政治秩序与政治衰败</div>
+      <div class="tl-en">Political Order and Political Decay</div>
+      <div class="tl-desc">三组关键诊断：家族化（精英把国家据为己有）、否决政治（制度过于分权导致瘫痪）、制度僵化（好制度也会被锁死）。对美国政治衰败最系统的诊断。</div>
+      <div class="tl-tags">
+        <span class="tl-tag tag-red">政治衰败</span>
+        <span class="tl-tag tag-gold">否决政治</span>
+      </div>
+    </div>
+
+    <div class="tl-entry phase-c">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2018 · 阶段三</div>
+      <div class="tl-name">身份：对尊严的渴求与怨恨的政治</div>
+      <div class="tl-en">Identity: The Demand for Dignity and the Politics of Resentment</div>
+      <div class="tl-desc">回到 thymos 概念。优越意识（渴望高人一等 → 民族主义）vs. 平等意识（渴望平等对待 → 身份政治）。批评过度碎片化的身份政治侵蚀了共同的公民身份。</div>
+      <div class="tl-tags">
+        <span class="tl-tag tag-sage">身份政治</span>
+        <span class="tl-tag tag-red">民粹主义</span>
+      </div>
+    </div>
+
+    <div class="tl-entry phase-c">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2022 · 阶段三</div>
+      <div class="tl-name">自由主义及其不满</div>
+      <div class="tl-en">Liberalism and Its Discontents</div>
+      <div class="tl-desc">古典自由主义同时遭遇左翼（身份政治、经济不平等批判）和右翼（民族主义、宗教传统主义）的攻击。为古典自由主义辩护，但承认它必须自我修正。</div>
+      <div class="tl-tags">
+        <span class="tl-tag tag-green">自由主义</span>
+        <span class="tl-tag tag-gold">辩护与修正</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="ornament"><div class="ornament-icon"></div></div>
+
+<!-- ===== 核心概念 ===== -->
+<section id="concepts" class="fade-in">
+  <div class="section-header">
+    <div class="section-label">Key Concepts</div>
+    <div class="section-title">十个核心概念</div>
+    <div class="section-desc">理解福山思想的关键词，每一个都是贯穿其多部著作的解释性工具。</div>
+  </div>
+
+  <div class="concept-layout">
+    <div class="concept-item ci-red">
+      <div class="ci-en">Thymos</div>
+      <div class="ci-zh">血气 / 激情</div>
+      <div class="ci-def">柏拉图灵魂三分中的"中间项"，人类对承认的渴望。福山把它从政治哲学冷门概念变成贯穿其后期所有著作的核心词汇。</div>
+    </div>
+    <div class="concept-item ci-green">
+      <div class="ci-en">Recognition</div>
+      <div class="ci-zh">承认</div>
+      <div class="ci-def">来自黑格尔-科耶夫"主奴辩证法"：人不仅追求物质，更追求被他人承认为有尊严的存在。自由民主制是对这一需求的最终回应。</div>
+    </div>
+    <div class="concept-item ci-red">
+      <div class="ci-en">Megalothymia</div>
+      <div class="ci-zh">优越意识</div>
+      <div class="ci-def">渴望被承认为"高人一等"。民族主义、强人崇拜的心理根源。是 thymos 的危险形态。</div>
+    </div>
+    <div class="concept-item ci-sage">
+      <div class="ci-en">Isothymia</div>
+      <div class="ci-zh">平等意识</div>
+      <div class="ci-def">渴望被承认为"与他人平等"。民主与身份政治的共同心理基础。是现代政治的主要驱动力。</div>
+    </div>
+    <div class="concept-item ci-dark">
+      <div class="ci-en">Last Man</div>
+      <div class="ci-zh">最后的人</div>
+      <div class="ci-def">尼采意象：物质满足但精神空虚、不再为崇高之物奋斗的人。福山借此提示自由民主的内在危险——满足感可能摧毁民主本身。</div>
+    </div>
+    <div class="concept-item ci-green">
+      <div class="ci-en">State Capacity</div>
+      <div class="ci-zh">国家能力</div>
+      <div class="ci-def">国家有效执行政策的能力，独立于"国家管多宽"。福山反对小政府教条，强调"有效政府"才是关键。</div>
+    </div>
+    <div class="concept-item ci-gold">
+      <div class="ci-en">Vetocracy</div>
+      <div class="ci-zh">否决政治</div>
+      <div class="ci-def">过度分权导致谁都无法决策的政治瘫痪。福山用以诊断当代美国——利益集团利用否决点阻碍一切改革。</div>
+    </div>
+    <div class="concept-item ci-red">
+      <div class="ci-en">Repatrimonialization</div>
+      <div class="ci-zh">再家族化</div>
+      <div class="ci-def">本应非人格化的现代国家被精英网络重新私有化——历史上反复发生的"政治衰败"的核心机制。</div>
+    </div>
+    <div class="concept-item ci-sage">
+      <div class="ci-en">Kin Selection</div>
+      <div class="ci-zh">亲属选择</div>
+      <div class="ci-def">源自进化生物学：人偏袒亲属是遗传本能，也是一切"家产制"腐败的生物学根源。政治现代化的本质是不断抵抗这种引力。</div>
+    </div>
+    <div class="concept-item ci-gold">
+      <div class="ci-en">Getting to Denmark</div>
+      <div class="ci-zh">如何变成丹麦</div>
+      <div class="ci-def">福山的核心悖论：人人都知道良治的理想样本，但没有捷径可以复制。政治秩序是在特定历史条件下偶然演化的产物。</div>
+    </div>
+  </div>
+</section>
+
+<div class="ornament"><div class="ornament-icon"></div></div>
+
+<!-- ===== 文明比较 ===== -->
+<section id="compare" class="fade-in">
+  <div class="section-header">
+    <div class="section-label">Civilizational Comparison</div>
+    <div class="section-title">三支柱的文明比较</div>
+    <div class="section-desc">福山的核心方法是跨文明比较。不同文明在三大支柱上的得分差异，造就了截然不同的政治路径。</div>
+  </div>
+
+  <div class="cmp-table-wrap">
+    <table class="cmp-table">
+      <thead>
+        <tr>
+          <th>文明</th>
+          <th>国家</th>
+          <th>法治</th>
+          <th>问责</th>
+          <th style="text-align:left">诊断</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>中国（秦汉以来）</td>
+          <td class="score-yes">强</td>
+          <td class="score-no">缺</td>
+          <td class="score-no">缺</td>
+          <td style="text-align:left; font-size:13px;">国家能力超前，但家产制循环无法打破</td>
+        </tr>
+        <tr>
+          <td>印度（前现代）</td>
+          <td class="score-no">弱</td>
+          <td class="score-partial">部分</td>
+          <td class="score-partial">碎片</td>
+          <td style="text-align:left; font-size:13px;">种姓制度阻碍国家统一，但保留社会自治</td>
+        </tr>
+        <tr>
+          <td>奥斯曼帝国</td>
+          <td class="score-partial">中</td>
+          <td class="score-partial">部分</td>
+          <td class="score-no">缺</td>
+          <td style="text-align:left; font-size:13px;">军事奴隶制短暂有效，终因家产制腐化衰败</td>
+        </tr>
+        <tr>
+          <td>法国（旧制度）</td>
+          <td class="score-yes">强</td>
+          <td class="score-partial">部分</td>
+          <td class="score-no">缺</td>
+          <td style="text-align:left; font-size:13px;">绝对王权压制问责，导致大革命爆发</td>
+        </tr>
+        <tr>
+          <td>俄罗斯（沙皇）</td>
+          <td class="score-yes">强</td>
+          <td class="score-no">缺</td>
+          <td class="score-no">缺</td>
+          <td style="text-align:left; font-size:13px;">专制主义极端形态，贵族从未形成制衡</td>
+        </tr>
+        <tr>
+          <td>英国（近代早期）</td>
+          <td class="score-yes">强</td>
+          <td class="score-yes">强</td>
+          <td class="score-yes">强</td>
+          <td style="text-align:left; font-size:13px;">三者偶然均衡 — 现代自由秩序的最早范本</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="ornament"><div class="ornament-icon"></div></div>
+
+<!-- ===== 思想坐标系 ===== -->
+<section id="coordinates" class="fade-in">
+  <div class="section-header">
+    <div class="section-label">Intellectual Coordinates</div>
+    <div class="section-title">在更大的思想光谱中定位福山</div>
+    <div class="section-desc">每一位思想家都占据着多维坐标系中的一个位置。以下六条光谱轴线，帮你看到福山在整个政治思想史地图上的精确位置。</div>
+  </div>
+
+  <div class="spectrum-intro">
+    <h3>为什么需要坐标系</h3>
+    <p>单独读福山，容易觉得他"什么都在谈"——从哲学到生物学，从制度到文化。但把他放到<strong>多条思想光谱</strong>上，你会发现他的位置其实非常精确：他不是自由派也不是保守派，不是乐观主义者也不是悲观主义者，而是一个在多个维度上都占据<strong>中间偏特殊位置</strong>的思想家。理解这个位置，比记住他的任何具体论点都更重要。</p>
+  </div>
+
+  <div class="spectrum-list">
+
+    <!-- Axis 1 -->
+    <div class="spectrum-item">
+      <div class="sp-header">
+        <span class="sp-num">AXIS 01</span>
+        <span class="sp-title">历史观：目的论 vs. 偶然论</span>
+      </div>
+      <div class="sp-bar-wrap">
+        <div class="sp-bar"></div>
+        <div class="sp-marker" style="left: 62%;"></div>
+      </div>
+      <div class="sp-labels">
+        <div class="sp-label sp-label-left">历史有方向与终点<span class="sp-scholars">黑格尔 · 马克思 · 科耶夫</span></div>
+        <div class="sp-label sp-label-right">历史是偶然与碎片<span class="sp-scholars">韦伯 · 以赛亚·伯林 · 波普尔</span></div>
+      </div>
+      <div class="sp-desc">
+        福山的核心身份是一个<strong>温和的目的论者</strong>。他继承了黑格尔-科耶夫的传统，相信历史有一个方向（自由民主制的普遍化）。但与黑格尔和马克思不同，他在《政治秩序的起源》中大量引入韦伯式的历史偶然性——承认通往"终点"的道路是曲折的、非必然的。这使他既不同于线性进步论者，也不同于彻底的偶然论者。<strong>他站在"有方向但没有必然性"的独特位置上。</strong>
+      </div>
+      <div class="sp-position-tag">温和目的论 · 方向性 + 偶然路径</div>
+    </div>
+
+    <!-- Axis 2 -->
+    <div class="spectrum-item">
+      <div class="sp-header">
+        <span class="sp-num">AXIS 02</span>
+        <span class="sp-title">国家观：大政府 vs. 小政府</span>
+      </div>
+      <div class="sp-bar-wrap">
+        <div class="sp-bar"></div>
+        <div class="sp-marker" style="left: 42%;"></div>
+      </div>
+      <div class="sp-labels">
+        <div class="sp-label sp-label-left">强国家 · 大政府<span class="sp-scholars">黑格尔 · 李斯特 · 发展型国家</span></div>
+        <div class="sp-label sp-label-right">最小国家 · 自由放任<span class="sp-scholars">哈耶克 · 诺齐克 · 自由意志主义</span></div>
+      </div>
+      <div class="sp-desc">
+        福山明确反对美国右翼的"小政府教条"。他区分了国家的<strong>"范围"（管多宽）</strong>和<strong>"能力"（管多有效）</strong>，并论证美国需要的是更强的国家能力，而非更小的政府。这使他与哈耶克、弗里德曼式的自由意志主义保持距离。但同时他也警惕过度集权——他理想中的均衡是<strong>"有限但有力的政府"</strong>，接近欧洲的社会自由主义传统。
+      </div>
+      <div class="sp-position-tag">有限但有力 · 区分范围与能力</div>
+    </div>
+
+    <!-- Axis 3 -->
+    <div class="spectrum-item">
+      <div class="sp-header">
+        <span class="sp-num">AXIS 03</span>
+        <span class="sp-title">方法论：规范哲学 vs. 经验科学</span>
+      </div>
+      <div class="sp-bar-wrap">
+        <div class="sp-bar"></div>
+        <div class="sp-marker" style="left: 48%;"></div>
+      </div>
+      <div class="sp-labels">
+        <div class="sp-label sp-label-left">从"应然"出发的哲学推演<span class="sp-scholars">罗尔斯 · 施特劳斯 · 桑德尔</span></div>
+        <div class="sp-label sp-label-right">从"实然"出发的经验研究<span class="sp-scholars">阿西莫格鲁 · 普特南 · 蒂利</span></div>
+      </div>
+      <div class="sp-desc">
+        这是福山最独特的位置之一：<strong>他同时站在两边</strong>。《历史的终结》是一部黑格尔式的政治哲学著作——从"承认"这个规范性概念推导出历史的终点。而《政治秩序的起源》则是一部韦伯式的比较历史社会学——用经验证据分析不同文明的制度演化。很少有思想家能在两种方法论之间自如切换。<strong>这种"两栖"能力是他既被哲学家又被政治学家认真对待的原因。</strong>
+      </div>
+      <div class="sp-position-tag">哲学-经验两栖 · 横跨两种传统</div>
+    </div>
+
+    <!-- Axis 4 -->
+    <div class="spectrum-item">
+      <div class="sp-header">
+        <span class="sp-num">AXIS 04</span>
+        <span class="sp-title">现代性判断：乐观 vs. 悲观</span>
+      </div>
+      <div class="sp-bar-wrap">
+        <div class="sp-bar"></div>
+        <div class="sp-marker" style="left: 55%;"></div>
+      </div>
+      <div class="sp-labels">
+        <div class="sp-label sp-label-left">启蒙乐观 · 进步必然<span class="sp-scholars">平克 · 哈贝马斯 · 孔多塞</span></div>
+        <div class="sp-label sp-label-right">文明悲观 · 衰落宿命<span class="sp-scholars">斯宾格勒 · 施密特 · 海德格尔</span></div>
+      </div>
+      <div class="sp-desc">
+        福山的位置在这条轴上<strong>随时间发生了明显移动</strong>。1992 年他几乎是当代最知名的启蒙乐观主义者——宣告自由民主的"终结"式胜利。但到 2014 年以后，他的核心关键词变成了"政治衰败""否决政治""身份政治"。他并没有变成悲观主义者（他仍然为自由主义辩护），但他从<strong>"胜利叙事"转向了"危机叙事"</strong>。这种位移本身就是理解福山的关键线索。
+      </div>
+      <div class="sp-position-tag">从乐观滑向审慎 · 仍为自由主义辩护</div>
+    </div>
+
+    <!-- Axis 5 -->
+    <div class="spectrum-item">
+      <div class="sp-header">
+        <span class="sp-num">AXIS 05</span>
+        <span class="sp-title">普遍主义 vs. 文化特殊主义</span>
+      </div>
+      <div class="sp-bar-wrap">
+        <div class="sp-bar"></div>
+        <div class="sp-marker" style="left: 25%;"></div>
+      </div>
+      <div class="sp-labels">
+        <div class="sp-label sp-label-left">普遍人性 · 普遍制度需求<span class="sp-scholars">康德 · 罗尔斯 · 哈贝马斯</span></div>
+        <div class="sp-label sp-label-right">文明不可通约 · 文化决定论<span class="sp-scholars">亨廷顿 · 赫尔德 · 文化相对主义</span></div>
+      </div>
+      <div class="sp-desc">
+        这是福山最坚定、也最受争议的位置：<strong>他是一个强普遍主义者</strong>。他的三支柱框架（国家·法治·问责）被设计为跨文明适用的诊断工具——他认为所有社会都面临同样的制度建构问题，只是历史路径不同。这直接反驳了他的老师亨廷顿的"文明冲突"论。批评者说这是西方中心主义；福山回应说，功能性的制度需求不等于文化同质化——新加坡和丹麦可以用完全不同的文化路径达到类似的制度均衡。
+      </div>
+      <div class="sp-position-tag">强普遍主义 · 制度功能论</div>
+    </div>
+
+    <!-- Axis 6 -->
+    <div class="spectrum-item">
+      <div class="sp-header">
+        <span class="sp-num">AXIS 06</span>
+        <span class="sp-title">人性论：社会建构 vs. 生物本性</span>
+      </div>
+      <div class="sp-bar-wrap">
+        <div class="sp-bar"></div>
+        <div class="sp-marker" style="left: 72%;"></div>
+      </div>
+      <div class="sp-labels">
+        <div class="sp-label sp-label-left">人性是社会建构的<span class="sp-scholars">福柯 · 布尔迪厄 · 后现代主义</span></div>
+        <div class="sp-label sp-label-right">人性有深层生物学基础<span class="sp-scholars">进化心理学 · 社会生物学 · E.O.威尔逊</span></div>
+      </div>
+      <div class="sp-desc">
+        这是福山思想中最容易被忽视、但实际上最基础的维度。他在《大断裂》和《政治秩序的起源》中大量援引<strong>进化生物学和社会生物学</strong>来论证：人类天生是社会动物，天生偏袒亲属（kin selection），天生渴望被承认（thymos）。这些不是文化产物，而是人类的"出厂设置"。这使他与后现代主义和社会建构论几乎完全对立。<strong>他的整个政治衰败理论——"回到家族政治的引力"——就建立在这个生物学人性论之上。</strong>
+      </div>
+      <div class="sp-position-tag">生物本性论 · 人性 = 政治的底层代码</div>
+    </div>
+
+  </div>
+
+  <!-- Quadrant Map: 2D -->
+  <div class="quadrant-map">
+    <div class="quad-title">二维思想地图：福山与同时代思想家的相对位置</div>
+    <div class="quad-svg-wrap">
+      <svg viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <style>
+            .q-axis{stroke:#ddd8d0;stroke-width:1.5}
+            .q-label{font:600 11px Inter,sans-serif;fill:#8a8a8a;text-anchor:middle}
+            .q-label-sub{font:400 9px Inter,sans-serif;fill:#aaa;text-anchor:middle}
+            .q-dot{r:7;stroke-width:2.5;fill:#fff;transition:all .3s}
+            .q-dot-main{r:11;fill:#1b3a2d;stroke:#b8945f;stroke-width:3}
+            .q-name{font:600 12px "Noto Serif SC",serif;text-anchor:middle}
+            .q-name-main{font:700 14px "Noto Serif SC",serif;fill:#1b3a2d;text-anchor:middle}
+          </style>
+        </defs>
+
+        <!-- Axes -->
+        <line x1="80" y1="260" x2="620" y2="260" class="q-axis"/>
+        <line x1="350" y1="50" x2="350" y2="470" class="q-axis"/>
+
+        <!-- Axis labels -->
+        <text x="90" y="245" class="q-label" text-anchor="start">强国家 · 大政府</text>
+        <text x="610" y="245" class="q-label" text-anchor="end">最小国家 · 自由放任</text>
+        <text x="350" y="38" class="q-label">目的论 · 历史有方向</text>
+        <text x="350" y="490" class="q-label">偶然论 · 历史无目的</text>
+
+        <!-- Quadrant backgrounds -->
+        <rect x="80" y="50" width="270" height="210" rx="0" fill="rgba(27,58,45,.03)"/>
+        <rect x="350" y="50" width="270" height="210" rx="0" fill="rgba(184,148,95,.04)"/>
+        <rect x="80" y="260" width="270" height="210" rx="0" fill="rgba(139,58,58,.03)"/>
+        <rect x="350" y="260" width="270" height="210" rx="0" fill="rgba(27,58,45,.02)"/>
+
+        <!-- Quadrant labels -->
+        <text x="215" y="140" class="q-label-sub" style="font-size:11px;fill:#4a7c68;">国家主义者</text>
+        <text x="485" y="140" class="q-label-sub" style="font-size:11px;fill:#8a6d3f;">自由目的论者</text>
+        <text x="215" y="380" class="q-label-sub" style="font-size:11px;fill:#8b3a3a;">左翼建构论者</text>
+        <text x="485" y="380" class="q-label-sub" style="font-size:11px;fill:#8a8a8a;">自由经验论者</text>
+
+        <!-- Scholars -->
+        <!-- Hegel: strong state + strong teleology -->
+        <circle cx="155" cy="88" class="q-dot" stroke="#4a7c68"/>
+        <text x="155" y="113" class="q-name" fill="#4a7c68">黑格尔</text>
+
+        <!-- Marx: strong state + strong teleology -->
+        <circle cx="128" cy="120" class="q-dot" stroke="#8b3a3a"/>
+        <text x="128" y="145" class="q-name" fill="#8b3a3a">马克思</text>
+
+        <!-- Rawls: moderate state + moderate teleology -->
+        <circle cx="270" cy="185" class="q-dot" stroke="#4a7c68"/>
+        <text x="270" y="210" class="q-name" fill="#4a7c68">罗尔斯</text>
+
+        <!-- Hayek: minimal state + weak teleology -->
+        <circle cx="555" cy="210" class="q-dot" stroke="#8a6d3f"/>
+        <text x="555" y="235" class="q-name" fill="#8a6d3f">哈耶克</text>
+
+        <!-- Huntington: moderate state + weak teleology (civilization-based) -->
+        <circle cx="215" cy="320" class="q-dot" stroke="#8a8a8a"/>
+        <text x="215" y="345" class="q-name" fill="#8a8a8a">亨廷顿</text>
+
+        <!-- Sandel: moderate state + moderate constructivism -->
+        <circle cx="245" cy="390" class="q-dot" stroke="#8b3a3a"/>
+        <text x="245" y="415" class="q-name" fill="#8b3a3a">桑德尔</text>
+
+        <!-- Foucault/postmodern: constructivist + anti-teleological -->
+        <circle cx="155" cy="430" class="q-dot" stroke="#8b3a3a"/>
+        <text x="155" y="455" class="q-name" fill="#8b3a3a">福柯</text>
+
+        <!-- Acemoglu: empirical + moderate -->
+        <circle cx="460" cy="330" class="q-dot" stroke="#8a8a8a"/>
+        <text x="460" y="355" class="q-name" fill="#8a8a8a">阿西莫格鲁</text>
+
+        <!-- Weber: empirical + anti-teleological -->
+        <circle cx="500" cy="395" class="q-dot" stroke="#8a8a8a"/>
+        <text x="500" y="420" class="q-name" fill="#8a8a8a">韦伯</text>
+
+        <!-- Mearsheimer: realist, empirical + anti-teleological -->
+        <circle cx="530" cy="440" class="q-dot" stroke="#8a8a8a"/>
+        <text x="530" y="465" class="q-name" fill="#8a8a8a">米尔斯海默</text>
+
+        <!-- FUKUYAMA: strong main dot, between teleology and empiricism, slightly left of center on state -->
+        <circle cx="380" cy="175" class="q-dot-main"/>
+        <text x="380" y="157" class="q-name-main">福山</text>
+        <text x="380" y="200" style="font:400 9.5px Inter,sans-serif;fill:#b8945f;text-anchor:middle;">温和目的论 · 有限强国家</text>
+      </svg>
+    </div>
+    <div class="insight-bar" style="margin-top:24px;">
+      <strong>读图指南：</strong>横轴是"国家观"（左 = 强国家，右 = 最小国家），纵轴是"历史观"（上 = 目的论，下 = 偶然论）。福山位于右上象限（自由目的论者）与左上象限（国家主义者）的交界地带——这个位置使他既区别于纯粹的自由意志主义者（右下），也区别于后现代建构论者（左下），构成了当代政治思想中一个非常独特的坐标。
+    </div>
+  </div>
+
+  <!-- Thought Shift Timeline -->
+  <div class="shift-timeline">
+    <div class="shift-title">福山思想重心的迁移轨迹</div>
+    <div style="font-size:13px; color:var(--muted); margin-bottom:20px; line-height:1.8;">
+      福山的位置不是一成不变的。三十年来，他在上述每条光谱上都发生了可辨识的位移。以下时间轴展示了这种演化：
+    </div>
+    <div class="shift-row">
+      <div class="shift-block sb-red">
+        <div class="sb-year">1989–1999</div>
+        <div class="sb-dot"></div>
+        <div class="sb-text"><strong>哲学宣告</strong><br>以黑格尔式目的论宣告自由民主的"终结"，高度乐观</div>
+      </div>
+      <div class="shift-block sb-green">
+        <div class="sb-year">2000–2014</div>
+        <div class="sb-dot"></div>
+        <div class="sb-text"><strong>经验转向</strong><br>转向比较历史社会学，追问制度根基，引入生物学人性论</div>
+      </div>
+      <div class="shift-block sb-gold">
+        <div class="sb-year">2014–至今</div>
+        <div class="sb-dot"></div>
+        <div class="sb-text"><strong>危机诊断</strong><br>承认衰败的可能，为自由主义辩护但要求修正，从乐观走向审慎</div>
+      </div>
+    </div>
+    <div class="insight-bar" style="margin-top:20px;">
+      <strong>核心位移：</strong>目的论从"强"变"弱"（承认偶然性）；乐观度从"高"滑向"中"（但仍拒绝悲观）；方法论从"纯哲学"扩展到"哲学+经验"；对人性的理解从"文化可塑"转向"生物约束"。这些位移的方向是一致的——<strong>福山在不断向现实妥协，但没有放弃他最初的框架。</strong>
+    </div>
+  </div>
+
+</section>
+
+<div class="ornament"><div class="ornament-icon"></div></div>
+
+<!-- ===== 思想对话 ===== -->
+<section id="scholars" class="fade-in">
+  <div class="section-header">
+    <div class="section-label">Intellectual Dialogues</div>
+    <div class="section-title">与同时代学者的对话</div>
+    <div class="section-desc">理解福山，最好同时知道他在和谁对话、被谁挑战。以下是构成福山思想网络的关键学者。</div>
+  </div>
+
+  <div class="scholar-grid">
+
+    <div class="scholar-card">
+      <div class="sc-header">
+        <div class="sc-avatar" style="background:var(--green-deep);">亨</div>
+        <div>
+          <div class="sc-name">亨廷顿</div>
+          <div class="sc-meta">Samuel P. Huntington · 福山的导师</div>
+          <div class="sc-work">《文明的冲突》1996 ·《变化社会中的政治秩序》1968</div>
+        </div>
+      </div>
+      <div class="sc-tags">
+        <span class="sc-tag stag-source">直接先驱</span>
+        <span class="sc-tag stag-agree">国家能力优先</span>
+        <span class="sc-tag stag-tension">普世主义之争</span>
+      </div>
+      <div class="sc-body">
+        同样关心制度与秩序，但亨廷顿晚年转向<strong>文明决定论</strong>，认为冷战后是"文明断层"主导冲突——与福山的"历史终结"针锋相对。福山用亨廷顿早期的分析工具，反驳他晚期的文化相对主义。
+      </div>
+      <div class="sc-quote">「政治衰败比政治发展更常见。」— 亨廷顿</div>
+    </div>
+
+    <div class="scholar-card">
+      <div class="sc-header">
+        <div class="sc-avatar" style="background:var(--green-sage);">阿</div>
+        <div>
+          <div class="sc-name">阿西莫格鲁 & 罗宾逊</div>
+          <div class="sc-meta">Acemoglu & Robinson · 制度主义同行</div>
+          <div class="sc-work">《国家为什么会失败》2012</div>
+        </div>
+      </div>
+      <div class="sc-tags">
+        <span class="sc-tag stag-agree">制度决定命运</span>
+        <span class="sc-tag stag-tension">国家能力 vs 包容性</span>
+      </div>
+      <div class="sc-body">
+        同样强调制度，但阿西莫格鲁认为<strong>包容性制度是前提</strong>，强国家能力可以从中生长；福山认为<strong>国家能力有独立价值</strong>，威权国家也可能建设良好制度。两人对中国模式的判断因此不同。
+      </div>
+      <div class="sc-quote">「包容型 vs 汲取型制度」— A&R 的核心二分法</div>
+    </div>
+
+    <div class="scholar-card">
+      <div class="sc-header">
+        <div class="sc-avatar" style="background:#8b3a3a;">米</div>
+        <div>
+          <div class="sc-name">米尔斯海默</div>
+          <div class="sc-meta">John Mearsheimer · 现实主义对手</div>
+          <div class="sc-work">《大国政治的悲剧》2001</div>
+        </div>
+      </div>
+      <div class="sc-tags">
+        <span class="sc-tag stag-tension">根本对立</span>
+      </div>
+      <div class="sc-body">
+        否认意识形态终结。大国之间的安全困境永恒存在，<strong>自由秩序只是短暂幻象</strong>。与福山的分歧是"观念能否改变历史进程"这个根本问题。
+      </div>
+    </div>
+
+    <div class="scholar-card">
+      <div class="sc-header">
+        <div class="sc-avatar" style="background:var(--gold-dark);">桑</div>
+        <div>
+          <div class="sc-name">桑德尔</div>
+          <div class="sc-meta">Michael Sandel · 身份政治回应者</div>
+          <div class="sc-work">《精英的傲慢》2020</div>
+        </div>
+      </div>
+      <div class="sc-tags">
+        <span class="sc-tag stag-agree">尊严问题</span>
+        <span class="sc-tag stag-tension">切口不同</span>
+      </div>
+      <div class="sc-body">
+        同样诊断民粹崛起的尊严问题，但桑德尔批评的是<strong>"才能主义"(meritocracy)</strong>——自由社会承诺"谁努力谁上"，给所有没成功的人附加了一份额外的耻辱。与福山互为补充。
+      </div>
+    </div>
+
+    <div class="scholar-card">
+      <div class="sc-header">
+        <div class="sc-avatar" style="background:var(--green-mid);">普</div>
+        <div>
+          <div class="sc-name">普特南</div>
+          <div class="sc-meta">Robert Putnam · 社会资本对话者</div>
+          <div class="sc-work">《独自打保龄》2000</div>
+        </div>
+      </div>
+      <div class="sc-tags">
+        <span class="sc-tag stag-agree">社会资本</span>
+        <span class="sc-tag stag-source">互为补充</span>
+      </div>
+      <div class="sc-body">
+        与福山的《信任》互为补充，从微观社团活动测量美国社会资本崩塌。<strong>50 年数据</strong>证明社团、教会、工会、邻里互助全面萎缩。
+      </div>
+    </div>
+
+    <div class="scholar-card">
+      <div class="sc-header">
+        <div class="sc-avatar" style="background:#5a5a5a;">韦</div>
+        <div>
+          <div class="sc-name">韦伯</div>
+          <div class="sc-meta">Max Weber · 全书的理论基石</div>
+          <div class="sc-work">《经济与社会》</div>
+        </div>
+      </div>
+      <div class="sc-tags">
+        <span class="sc-tag stag-source">官僚制理论</span>
+        <span class="sc-tag stag-source">家产制概念</span>
+        <span class="sc-tag stag-tension">文化因果论</span>
+      </div>
+      <div class="sc-body">
+        理性官僚制、家产制、魅力型权威三种统治类型的区分，是福山全书的<strong>分析词汇表</strong>。福山用进化生物学补充了韦伯没有的"人性底层逻辑"。
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="ornament"><div class="ornament-icon"></div></div>
+
+<!-- ===== 当代回响 ===== -->
+<section id="relevance" class="fade-in">
+  <div class="section-header">
+    <div class="section-label">Contemporary Relevance</div>
+    <div class="section-title">福山思想的当代解释力</div>
+    <div class="section-desc">福山的概念工具不仅用于分析历史，对理解当下世界的政治现象同样锋利。</div>
+  </div>
+
+  <div class="relevance-grid">
+
+    <div class="relevance-card">
+      <span class="rc-icon">🇺🇸</span>
+      <div class="rc-title">美国政治衰败</div>
+      <div class="rc-body">
+        否决体制（vetocracy）使改革极难推行；游说机构将公共政策私有化；政党极化扭曲问责机制。建国时期的制度设计——三权分立、联邦制——已成为利益集团维护现状的工具。这是"再家族化"的美国版本。
+      </div>
+      <div class="rc-link">否决政治 · 制度僵化</div>
+    </div>
+
+    <div class="relevance-card">
+      <span class="rc-icon">🇨🇳</span>
+      <div class="rc-title">中国：历史循环的现代版</div>
+      <div class="rc-body">
+        国家能力全球顶级，但法治仍缺乏约束最高权力的能力——与秦汉的结构性问题高度相似。反腐运动走的是"加强国家对官僚的控制"路径，而非"建立超越个人权力的法律约束"路径。
+      </div>
+      <div class="rc-link">三支柱失衡 · 坏皇帝问题</div>
+    </div>
+
+    <div class="relevance-card">
+      <span class="rc-icon">🌍</span>
+      <div class="rc-title">全球民粹浪潮</div>
+      <div class="rc-body">
+        MAGA、欧洲右翼复兴、印度教民族主义——都是"中产叙述失灵之后，普通人在自由秩序里找不到位置的反应"。thymos 的当代大爆发：人们愿意用薄的个人权利交换厚的群体归属。
+      </div>
+      <div class="rc-link">thymos · 承认的政治</div>
+    </div>
+
+    <div class="relevance-card">
+      <span class="rc-icon">📱</span>
+      <div class="rc-title">躺平、内卷与孔乙己</div>
+      <div class="rc-body">
+        中国的"内卷-躺平-润学"三联症候群，与密歇根锈带工人投票给特朗普是同一个事件的不同表现——当中产阶级叙述断裂，自由秩序的承认危机在每个普通人的日常里现身。
+      </div>
+      <div class="rc-link">中产叙述失灵 · 最后的人</div>
+    </div>
+
+    <div class="relevance-card">
+      <span class="rc-icon">🧬</span>
+      <div class="rc-title">AI 与生物技术时代</div>
+      <div class="rc-body">
+        《后人类未来》的预言愈发紧迫：基因编辑与 AI 正在改写"人性"本身，而自由民主的合法性恰恰建立在"普遍人性"之上。当人性不再普遍，自由秩序的根基在哪里？
+      </div>
+      <div class="rc-link">人性基础 · 后人类挑战</div>
+    </div>
+
+    <div class="relevance-card">
+      <span class="rc-icon">🏛️</span>
+      <div class="rc-title">"如何变成丹麦"的困境</div>
+      <div class="rc-body">
+        阿富汗、伊拉克的国家建设失败，印证了福山对"制度移植"的深度怀疑。每一个成功的政治制度都是特定历史压力下内生演化的产物，外部援助可以辅助，但无法替代内生动力。
+      </div>
+      <div class="rc-link">制度移植悖论 · 路径依赖</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="ornament"><div class="ornament-icon"></div></div>
+
+<!-- ===== 著作导览 ===== -->
+<section id="books" class="fade-in">
+  <div class="section-header">
+    <div class="section-label">Book Guide</div>
+    <div class="section-title">福山的主要著作</div>
+    <div class="section-desc">按推荐阅读顺序排列。不必按出版年份读——选择最适合你当前兴趣的入口。</div>
+  </div>
+
+  <div class="book-grid">
+    <div class="book-card">
+      <div class="book-num bn-green">01</div>
+      <div class="book-info">
+        <div class="book-title">历史的终结与最后的人</div>
+        <div class="book-en">The End of History and the Last Man</div>
+        <div class="book-year">1992 · 入门首选</div>
+        <div class="book-desc">福山的成名作。宣告自由民主是人类政治的终极形态，同时提出"最后的人"这一深刻隐忧。读最后三分之一即可抓住核心。</div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-num bn-green">02</div>
+      <div class="book-info">
+        <div class="book-title">政治秩序的起源</div>
+        <div class="book-en">The Origins of Political Order</div>
+        <div class="book-year">2011 · 体系巅峰</div>
+        <div class="book-desc">横跨文明的比较政治史，提出三支柱分析框架。重点精读中国部分（5-7章）和欧洲部分（11-19章），其余可选读。</div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-num bn-gold">03</div>
+      <div class="book-info">
+        <div class="book-title">身份：对尊严的渴求与怨恨的政治</div>
+        <div class="book-en">Identity</div>
+        <div class="book-year">2018 · 最贴近当下</div>
+        <div class="book-desc">用 thymos 概念解释当代民粹与身份政治。篇幅不长，可读性极强，是理解 Trump 时代最好的政治学读物之一。</div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-num bn-sage">04</div>
+      <div class="book-info">
+        <div class="book-title">政治秩序与政治衰败</div>
+        <div class="book-en">Political Order and Political Decay</div>
+        <div class="book-year">2014 · 续卷</div>
+        <div class="book-desc">承接《起源》，写到全球化时代。"否决政治""家族化""制度僵化"三重诊断，是对美国政治衰败最系统的分析。</div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-num bn-gold">05</div>
+      <div class="book-info">
+        <div class="book-title">自由主义及其不满</div>
+        <div class="book-en">Liberalism and Its Discontents</div>
+        <div class="book-year">2022 · 最新辩护</div>
+        <div class="book-desc">为古典自由主义辩护，同时回应来自左翼和右翼的攻击。篇幅精炼，可视为福山三十年思想的总结陈词。</div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-num bn-light">06</div>
+      <div class="book-info">
+        <div class="book-title">信任 · 大断裂 · 后人类未来</div>
+        <div class="book-en">Trust / The Great Disruption / Our Posthuman Future</div>
+        <div class="book-year">1995 · 1999 · 2002</div>
+        <div class="book-desc">阶段一的三部作品，分别讨论社会信任、道德秩序与生物技术。适合对人类本性与文化经济学感兴趣的读者。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ornament"><div class="ornament-icon"></div></div>
+
+<!-- ===== 阅读路径 ===== -->
+<section id="paths" class="fade-in">
+  <div class="section-header">
+    <div class="section-label">Reading Paths</div>
+    <div class="section-title">四条阅读路径</div>
+    <div class="section-desc">不必从头读到尾。根据你的兴趣，选择一条最适合的路径进入福山的思想世界。</div>
+  </div>
+
+  <div class="path-grid">
+
+    <div class="path-card pp1">
+      <div class="path-label">PATH 01 · 入门</div>
+      <div class="path-title">先抓住"承认"这条线</div>
+      <div class="path-body">尊严感是 21 世纪政治的关键词。从 thymos 出发，最短路径理解福山的核心洞察。</div>
+      <div class="path-steps">
+        <div class="path-step"><span class="ps-num">1</span>《历史的终结》最后三分之一</div>
+        <div class="path-step"><span class="ps-num">2</span>《身份政治》全文</div>
+        <div class="path-step"><span class="ps-num">3</span>桑德尔《精英的傲慢》</div>
+      </div>
+    </div>
+
+    <div class="path-card pp2">
+      <div class="path-label">PATH 02 · 进阶</div>
+      <div class="path-title">沿着"制度"这条线</div>
+      <div class="path-body">建立完整的比较政治学框架，理解不同文明为何走向不同的政治结局。</div>
+      <div class="path-steps">
+        <div class="path-step"><span class="ps-num">1</span>《政治秩序的起源》</div>
+        <div class="path-step"><span class="ps-num">2</span>《政治秩序与政治衰败》</div>
+        <div class="path-step"><span class="ps-num">3</span>阿西莫格鲁《国家为什么会失败》</div>
+      </div>
+    </div>
+
+    <div class="path-card pp3">
+      <div class="path-label">PATH 03 · 现实</div>
+      <div class="path-title">理解当代危机</div>
+      <div class="path-body">诊断我们时代的病症：民粹、极化、意义匮乏。福山与对话者一起回答"我们怎么了"。</div>
+      <div class="path-steps">
+        <div class="path-step"><span class="ps-num">1</span>《自由主义及其不满》</div>
+        <div class="path-step"><span class="ps-num">2</span>《身份政治》</div>
+        <div class="path-step"><span class="ps-num">3</span>波兹曼《娱乐至死》+ 普特南《独自打保龄》</div>
+      </div>
+    </div>
+
+    <div class="path-card pp4">
+      <div class="path-label">PATH 04 · 本土</div>
+      <div class="path-title">把福山带回中国语境</div>
+      <div class="path-body">追问：中国是不是已经具备了三要素中的两要素，缺的是哪一项？</div>
+      <div class="path-steps">
+        <div class="path-step"><span class="ps-num">1</span>《信任》</div>
+        <div class="path-step"><span class="ps-num">2</span>费孝通《乡土中国》</div>
+        <div class="path-step"><span class="ps-num">3</span>《政治秩序的起源》中国章节（5-7章）</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="container">
+    <span class="foot-brand">福山思想百科</span>
+    <p>基于阅读笔记整理 · 2026</p>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.06 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+document.querySelectorAll('nav.topbar a').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav.topbar a');
+function updateNav() {
+  let current = '';
+  sections.forEach(s => { if (s.getBoundingClientRect().top <= 100) current = s.id; });
+  navLinks.forEach(l => {
+    l.style.color = ''; l.style.background = '';
+    if (l.getAttribute('href') === '#' + current) {
+      l.style.color = '#fff'; l.style.background = 'rgba(184,148,95,.25)';
+    }
+  });
+}
+window.addEventListener('scroll', updateNav, { passive: true });
+updateNav();
+</script>
+
+</body>
+</html>
